@@ -117,48 +117,8 @@ Aarya Vashishth
 Bioinformatics | Drug Discovery | AI in Biomedicine
 LinkedIn | Portfolio
 
-Would you like me to generate a visual logo/banner or add a badge section (e.g., Python version, license, stars)?
+<img width="1024" height="1024" alt="image" src="https://github.com/user-attachments/assets/c0236896-4773-4be5-b7e8-e8077767f71b" />
 
-
-
-
-
-
-
-
-You said:
-yes
-
-
-ChatGPT said:
-Great! Here's an enhanced version of your README.md with:
-
-🔖 Badges (license, Python version, stars, etc.)
-
-🎨 Banner logo
-
-🧪 Molecular emoji accents
-
-🌟 A polished developer-friendly look
-
-markdown
-Copy
-Edit
-<p align="center">
-  <img src="https://your-banner-image-link.com" alt="NovelMol Banner" width="100%" />
-</p>
-
-<h1 align="center">🧪 NovelMol</h1>
-<p align="center">AI-Powered Pipeline for Generating and Screening Novel Drug-Like Molecules</p>
-
-<p align="center">
-  <img alt="License" src="https://img.shields.io/github/license/yourusername/NovelMol">
-  <img alt="Python Version" src="https://img.shields.io/badge/python-3.8%2B-blue">
-  <img alt="Issues" src="https://img.shields.io/github/issues/yourusername/NovelMol">
-  <img alt="Stars" src="https://img.shields.io/github/stars/yourusername/NovelMol?style=social">
-</p>
-
----
 
 ## 🌟 Overview
 
