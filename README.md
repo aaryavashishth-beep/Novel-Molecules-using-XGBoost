@@ -1,4 +1,4 @@
-# Novel-Molecules-using-XGBoost
+# NovelMol
 
 🧪 NovelMol: Generating and Screening Novel Molecules with AI
 Welcome to NovelMol, an AI-driven pipeline for de novo drug design. This project leverages MolGAN to generate chemically valid molecules and integrates machine learning tools like Chemprop to evaluate their drug-likeness and bioactivity.
