@@ -1,42 +1,226 @@
-# TDP-43 Molecular Screening with XGBoost
+# NovelMol
 
-Exploratory Python workflows for preparing molecular features from ChEMBL, training an XGBoost activity classifier, and screening SMILES strings for candidate compounds. The repository also contains early scripts for ADMET filtering and TDP-43 related analyses.
+🧪 NovelMol: Generating and Screening Novel Molecules with AI
+Welcome to NovelMol, an AI-driven pipeline for de novo drug design. This project leverages MolGAN to generate chemically valid molecules and integrates machine learning tools like Chemprop to evaluate their drug-likeness and bioactivity.
 
-> **Project status:** Research prototype. The scripts are exploratory and should not be treated as a validated drug-discovery pipeline or as evidence of therapeutic activity.
+🚀 Project Highlights
+Molecule Generation using generative adversarial networks (MolGAN)
 
-## What’s here
+Drug-likeness Screening using Chemprop and other scoring models
 
-| File | Purpose |
-|---|---|
-| `xgboost_dd_version_1` | Prototype workflow for reading ChEMBL 35 activity data, deriving molecular descriptors with RDKit, labelling compounds by a pIC50 threshold, and fitting an XGBoost classifier. |
-| `ml_smilesfilter.py` | Earlier all-in-one experiment for data loading, descriptor calculation, model fitting, and candidate filtering. |
-| `admet_screen.py` | SMILES screening through the pkCSM web service, with simple hepatotoxicity and hERG filters. |
-| `lipin2.py` | Early TDP-43-focused exploration; includes 3D conformer generation and coordinate-based filtering. |
+Multiprocessing-enabled Workflow for high-throughput molecule evaluation
 
-## Methods at a glance
+SMILES Support with RDKit validation and descriptor calculation
 
-The XGBoost prototype uses RDKit descriptors (molecular weight, LogP, TPSA, rotatable bonds, hydrogen-bond donors, and acceptors) as model features. Activity labels are derived from ChEMBL measurements using a pIC50 threshold. The goal is to explore a lightweight cheminformatics workflow from activity data to ranked molecules.
+Fully modular and customizable for new targets or properties
 
-## Important limitations
+🧬 Why NovelMol?
+The discovery of new, drug-like molecules is critical yet costly. NovelMol aims to accelerate early-stage drug discovery using deep generative models and predictive machine learning, with applications in:
 
-- This is an early research prototype; scripts may need cleanup and adaptation before they run in a new environment.
-- Model scores depend on the source data, assay selection, label definition, train/test split, and validation design. They are not experimental evidence.
-- The coordinate-based filtering in the early scripts is a rough geometric heuristic, not molecular docking or binding-affinity prediction.
-- ADMET predictions from an external service are computational estimates and require appropriate validation.
-- Review each script’s inputs, dependencies, and assumptions before using its output.
+Cancer and neurodegenerative disease therapeutics
 
-## Getting started
+Target-specific inhibitor generation (e.g., TDP-43 inhibitors)
 
-The scripts expect Python plus scientific and cheminformatics packages such as RDKit, pandas, NumPy, scikit-learn, XGBoost, and tqdm. The ADMET script also uses requests and requires access to the pkCSM service.
+Cheminformatics and bioactivity prediction research
 
-The ChEMBL workflow reads a local ChEMBL 35 SQLite database named `chembl_35.db`; provide that database in the working directory before running it. Input/output filenames and paths are currently defined in the scripts.
+📦 Pipeline Overview
+mermaid
+Copy
+Edit
+graph TD
+    A[MolGAN] --> B[Generated SMILES]
+    B --> C[RDKit Validation]
+    C --> D[Descriptor Calculation]
+    D --> E[Chemprop Scoring]
+    E --> F[Filtered Molecule Library]
+Each component is modular and configurable via YAML or Python scripts.
 
-Because these are exploratory scripts rather than a packaged command-line application, inspect the selected script and adjust paths and dependencies for your environment before running it.
+🛠️ Technologies Used
+MolGAN (Molecular GAN model)
 
-## Research context
+RDKit for molecule validation & descriptors
 
-This repository reflects an exploration of machine learning and cheminformatics for molecular screening, alongside broader work on computational drug discovery. For a more complete project overview, see the [TDP-43 dissertation repository](https://github.com/aaryavashishth-beep/Masters).
+Chemprop for property prediction
 
-## Author
+Python multiprocessing for scalable screening
 
-**Aarya Vashishth** — Bioinformatics, computational drug discovery, and machine learning.
+Pandas, NumPy, tqdm for data handling and tracking
+
+📁 Folder Structure
+bash
+Copy
+Edit
+NovelMol/
+│
+├── molgan/                # MolGAN implementation & pretrained weights
+├── screening/             # Chemprop & descriptor filtering
+├── data/                  # Input/output SMILES and logs
+├── utils/                 # Helper scripts: validation, plotting
+├── results/               # Output files: CSVs, visuals, top hits
+├── config.yaml            # Configurations for training/screening
+└── main.py                # Pipeline entry point
+⚙️ How to Use
+1. Clone the repository
+bash
+Copy
+Edit
+git clone https://github.com/yourusername/NovelMol.git
+cd NovelMol
+2. Install dependencies
+bash
+Copy
+Edit
+pip install -r requirements.txt
+3. Run the pipeline
+bash
+Copy
+Edit
+python main.py --config config.yaml
+4. Output
+filtered_molecules.csv: Molecules passing thresholds
+
+descriptor_plots/: Drug-likeness and pIC50 score visuals
+
+🧠 Sample Use Case
+Design novel inhibitors for TDP-43, a key target in neurodegeneration and cancer:
+
+yaml
+Copy
+Edit
+target: TDP-43
+scoring_model: chemprop_pretrained_model.pt
+filters:
+  - QED > 0.5
+  - SA_score < 4.5
+  - pIC50 > 6.0
+📊 Visualization Example
+
+✅ Roadmap
+ Basic MolGAN integration
+
+ Chemprop-based screening
+
+ Reinforcement learning for target-specific generation
+
+ GUI or Streamlit-based web dashboard
+
+ Integration with molecular docking (AutoDock or GNINA)
+
+🤝 Contributing
+Pull requests are welcome! If you have ideas for new filters, scoring models, or visualizations, feel free to fork the repo and contribute.
+
+📄 License
+This project is licensed under the MIT License.
+
+👤 Author
+Aarya Vashishth
+Bioinformatics | Drug Discovery | AI in Biomedicine
+LinkedIn | Portfolio
+
+<img width="1024" height="1024" alt="image" src="https://github.com/user-attachments/assets/c0236896-4773-4be5-b7e8-e8077767f71b" />
+
+
+## 🌟 Overview
+
+**NovelMol** is an open-source, modular pipeline for *de novo* drug discovery. It combines:
+- 🧬 **MolGAN** to generate new molecules as SMILES
+- 🔬 **RDKit** to ensure chemical validity
+- 🧠 **Chemprop** and ML filters to score drug-likeness and bioactivity
+- ⚙️ Multiprocessing for efficient high-throughput screening
+
+Ideal for **biotech researchers**, **AI drug discovery** enthusiasts, and **computational biologists** working on novel targets like **TDP-43** in neurodegeneration and cancer.
+
+---
+
+## 📦 Key Features
+
+✅ MolGAN-based SMILES generation  
+✅ RDKit-based validation & descriptor calculation  
+✅ Chemprop scoring and threshold-based filtering  
+✅ Clean CSV output and descriptor visualizations  
+✅ Multiprocessing-enabled pipeline for speed  
+
+---
+
+## 🧪 Technologies
+
+- **MolGAN**: Deep generative model for molecules  
+- **Chemprop**: Message passing neural network (MPNN)  
+- **RDKit**: Cheminformatics toolkit  
+- **Python 3.8+**, **tqdm**, **NumPy**, **pandas**
+
+---
+
+## 📁 Repository Structure
+
+NovelMol/
+├── molgan/ # Generator module
+├── screening/ # Filters and ML scoring
+├── utils/ # Helpers (validation, metrics)
+├── data/ # Input/output files
+├── results/ # Molecule results & visualizations
+├── config.yaml # Config file
+└── main.py # Pipeline entry point
+
+yaml
+Copy
+Edit
+
+---
+
+## ⚙️ Usage
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/yourusername/NovelMol.git
+cd NovelMol
+2. Install dependencies
+bash
+Copy
+Edit
+pip install -r requirements.txt
+3. Run the pipeline
+bash
+Copy
+Edit
+python main.py --config config.yaml
+📊 Output
+filtered_molecules.csv: Molecules passing thresholds
+
+results/: Plots of QED, SA Score, pIC50, and descriptor distributions
+
+logs/: Screening progress and rejected molecules
+
+💡 Sample Config
+yaml
+Copy
+Edit
+target: TDP-43
+scoring_model: chemprop_model.pt
+filters:
+  QED: ">=0.6"
+  SA_score: "<=4.5"
+  pIC50: ">=6.5"
+🛣️ Roadmap
+ Baseline: MolGAN + Chemprop integration
+
+ Reward optimization via RL
+
+ Target docking (AutoDock/Gnina integration)
+
+ Jupyter interface & Streamlit dashboard
+
+ AWS/GPU-friendly parallel deployment
+
+🤝 Contributing
+We welcome PRs and collaborations from computational chemists, ML researchers, and bioinformaticians! Open an issue or fork this project to suggest enhancements.
+
+📄 License
+Distributed under the MIT License. See LICENSE for details.
+
+👤 Author
+Aarya Vashishth
+Bioinformatics | AI Drug Discovery | Cancer & Neurodegeneration Research
+🔗 LinkedIn
+📫 Email: aarya.vashishth@email.com
+
